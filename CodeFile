@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+int Num_Resistors();											                        			//introduces function
+float Create_Array(int array_size);
+
+int main (void)
+{
+	int array_size;															                          //crates veriable 
+	array_size = Num_Resistors();								                      		//sets veriable "array_size" equal to the value returned from the "Num_Resistors" function.
+ 	Create_Array(array_size);									                      			//calls the create array function and passes the array size veriable to function.
+ 	return 0;
+}
+
+int Num_Resistors()															                        //this function extracts and saves the number of resistors in parrelle.
+{
+	int size;
+	printf("Enter how many resistor values you would like apply .\n");		//asks user to input how many rsiters are in parellel. 
+	scanf("%i", &size);													                        	//assignes the inputted value to "size" veriable.
+	printf("there are %i resistors values in this calculation.\n", size);
+	return size;															                             //returns the value interger assigned to the "size" veriable. 
+}
+
+float Create_Array(int array_size)			                								//this function extracts the reistor valuess and calculates the total resistance of the resistors in parrlel
+{
+	printf("size = %i\n", array_size);										
+	float array [array_size];								                      				//creates an array equel of size equel to "array_size".
+	int current_resistor;													
+	float resistor_val;
+	int i;
+	float sum;
+	float Total_resistance;
+	resistor_val = 0;
+	current_resistor = 0;
+	Total_resistance = 0;
+	i = 0;
+	sum = 0;
+	
+	while (current_resistor < array_size)			                 						//creates a loop that cycle until all resistor values in parrlell have been inputed.
+		{
+			if (current_resistor >= array_size)
+			{	
+				break;											                               			//breaks program out of the loop.
+			}
+			printf("Enter resistor value %i.\n",current_resistor+1);      		//asks user to input the next resistor value.
+			scanf("%f", &resistor_val);								                    		//assignes the inputted value to "resistor_val" veriable.
+			array[current_resistor] = 1/resistor_val;						
+			current_resistor++;												                        //increments "current_resistor" by 1 each loop cycle.
+		}
+		
+	for (i < array_size)												                        	//creates loop that finds the summ or the array.
+	{
+		sum = sum + array[i];												
+		i++;
+	}
+	
+	Total_resistance = 1/sum;												
+	printf("Total Resistance = %fohm",Total_resistance);                   //prints the total resistance calculated.
+	return Total_resistance;
+}
